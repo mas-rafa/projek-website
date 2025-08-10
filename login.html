@@ -1,0 +1,68 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form | Dan Aleko</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <div class="wrapper">
+    <form id="loginForm">
+      <h1>Login</h1>
+      <div class="input-box">
+        <input type="text" id="username" placeholder="Username" required>
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-box">
+        <input type="password" id="password" placeholder="Password" required>
+        <i class='bx bxs-lock-alt' ></i>
+      </div>
+      <div class="remember-forgot">
+        <label><input type="checkbox">Remember Me</label>
+        <a href="#">Forgot Password</a>
+      </div>
+      <button type="submit" class="btn">Login</button>
+      <div class="register-link">
+        <p>Dont have an account? <a onclick="location.href='register.html'">Register</a></p>
+      </div>
+      <div id="customAlert" style="display:none;position:fixed;top:30px;left:50%;transform:translateX(-50%);background:#fff;color:#333;padding:18px 30px;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,0.15);font-weight:bold;z-index:9999;min-width:220px;text-align:center;">
+            <span id="alertMsg"></span>
+      </div>
+
+      <script>
+        function showAlert(message, color="#3498db") {
+            const alertBox = document.getElementById('customAlert');
+            const alertMsg = document.getElementById('alertMsg');
+            alertMsg.textContent = message;
+            alertBox.style.background = color;
+            alertBox.style.color = "#fff";
+            alertBox.style.display = "block";
+            setTimeout(() => {
+                alertBox.style.display = "none";
+            }, 2000);
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Basic admin authentication
+            if(username === "admin" && password === "admin123") {
+                showAlert('Login successful!', '#2ecc71');
+                setTimeout(() => {
+                    window.location.href = 'Home.html';
+                }, 2000);
+            } else {
+                showAlert('Invalid username or password!', '#e74c3c');
+            }
+        });
+      </script>
+    </form>
+    <p class="powered-by">Powered by SIJA</p>
+  </div>
+</body>
+</html>
